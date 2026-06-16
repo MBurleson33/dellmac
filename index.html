@@ -168,26 +168,21 @@
       background: var(--gold);
       color: var(--black);
     }
-    .hero-scroll {
-      position: absolute;
-      bottom: 2rem;
-      right: 2.5rem;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--muted);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    /* ── SCROLL PROGRESS ── */
+    .scroll-progress {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 3px;
+      height: 100vh;
+      z-index: 500;
+      background: rgba(255,255,255,0.05);
     }
-    .hero-scroll::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    .scroll-progress-bar {
+      width: 100%;
+      height: 0%;
+      background: var(--gold);
+      transition: height 0.05s linear;
     }
 
     /* ── SECTION BASE ── */
@@ -695,6 +690,11 @@
 </head>
 <body>
 
+<!-- Scroll Progress -->
+<div class="scroll-progress" aria-hidden="true">
+  <div class="scroll-progress-bar" id="scroll-bar"></div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#"><span class="logo-dell">Dell </span><span class="logo-mac">Mac</span></a>
@@ -1073,15 +1073,23 @@
 })();
 </script>
 
-<!-- Nav logo scroll reveal -->
+<!-- Nav logo scroll reveal + scroll progress -->
 <script>
 (function() {
   const logo = document.querySelector('.nav-logo');
   const hero = document.getElementById('hero');
+  const bar = document.getElementById('scroll-bar');
+
   function onScroll() {
     const threshold = hero ? hero.offsetHeight * 0.3 : 200;
     logo.classList.toggle('visible', window.scrollY > threshold);
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.height = pct + '%';
   }
+
   window.addEventListener('scroll', onScroll, { passive: true });
 })();
 </script>
