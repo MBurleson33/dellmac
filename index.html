@@ -325,6 +325,20 @@
     .album-card:hover .album-art img {
       transform: scale(1.04);
     }
+    .album-art--placeholder {
+      background: linear-gradient(135deg, #1C1C1E 0%, #252527 100%);
+      border: 1px dashed rgba(192,57,43,0.2);
+    }
+    .album-art--placeholder::after {
+      content: '✦';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: rgba(192,57,43,0.2);
+    }
     .album-year {
       font-size: 0.65rem;
       letter-spacing: 0.2em;
@@ -361,6 +375,83 @@
       transition: color 0.2s, border-color 0.2s;
     }
     .listen-link:hover { color: var(--gold); border-color: var(--gold-dim); }
+
+    /* ── SINGLES LIST ── */
+    .singles-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 3.5rem 0 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .singles-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .single-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s;
+    }
+    .single-row:hover { background: rgba(255,255,255,0.02); }
+    .single-thumb {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+    .single-thumb--placeholder {
+      width: 48px;
+      height: 48px;
+      background: var(--surface);
+      border: 1px dashed rgba(192,57,43,0.2);
+      flex-shrink: 0;
+    }
+    .single-info { min-width: 0; }
+    .single-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--offwhite);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .single-meta {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 0.15rem;
+    }
+    .single-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .single-link {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid rgba(138,136,128,0.25);
+      padding: 0.25rem 0.5rem;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .single-link:hover { color: var(--gold); border-color: var(--gold-dim); }
+    @media (max-width: 500px) {
+      .single-links { display: none; }
+      .single-row { grid-template-columns: 48px 1fr; }
+    }
 
     /* ── PRESS ── */
     #press {
@@ -560,9 +651,10 @@
     </div>
     <div class="album-grid">
 
+      <!-- Albums -->
       <div class="album-card">
         <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="MAC album cover" /></div>
-        <div class="album-year">2026</div>
+        <div class="album-year">Mar 2026</div>
         <div class="album-title">MAC</div>
         <div class="album-type">Album</div>
         <div class="listen-links">
@@ -572,10 +664,10 @@
       </div>
 
       <div class="album-card">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Gethsemane.jpg" alt="GETHSEMANE cover" /></div>
-        <div class="album-year">2026</div>
-        <div class="album-title">GETHSEMANE</div>
-        <div class="album-type">Single</div>
+        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="JERICHO EP cover" /></div>
+        <div class="album-year">Apr 2025</div>
+        <div class="album-title">JERICHO</div>
+        <div class="album-type">EP (with gio.)</div>
         <div class="listen-links">
           <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
           <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
@@ -583,9 +675,9 @@
       </div>
 
       <div class="album-card">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/masterpiece.jpg" alt="masterpiece album cover" /></div>
-        <div class="album-year">2025</div>
-        <div class="album-title">masterpiece</div>
+        <div class="album-art album-art--placeholder"></div>
+        <div class="album-year">Sep 2023</div>
+        <div class="album-title">Back To You</div>
         <div class="album-type">Album</div>
         <div class="listen-links">
           <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
@@ -594,20 +686,9 @@
       </div>
 
       <div class="album-card">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="JERICHO WALLS EP cover" /></div>
-        <div class="album-year">2025</div>
-        <div class="album-title">JERICHO WALLS</div>
-        <div class="album-type">EP (with Gio)</div>
-        <div class="listen-links">
-          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
-        </div>
-      </div>
-
-      <div class="album-card">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="FINE BY ME album cover" /></div>
-        <div class="album-year">2025</div>
-        <div class="album-title">FINE BY ME</div>
+        <div class="album-art album-art--placeholder"></div>
+        <div class="album-year">Feb 2023</div>
+        <div class="album-title">High &amp; Alone</div>
         <div class="album-type">Album</div>
         <div class="listen-links">
           <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
@@ -615,14 +696,187 @@
         </div>
       </div>
 
-      <div class="album-card">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/faithful.jpg" alt="Faithful single cover" /></div>
-        <div class="album-year">2024</div>
-        <div class="album-title">Faithful</div>
-        <div class="album-type">Single (ft. Kim Viera)</div>
-        <div class="listen-links">
-          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+    </div>
+
+    <!-- Singles -->
+    <p class="singles-label">Singles</p>
+    <div class="singles-list">
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Gethsemane.jpg" alt="GETHSEMANE" />
+        <div class="single-info">
+          <div class="single-title">GETHSEMANE</div>
+          <div class="single-meta">2026</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Take Me Home.webp" alt="TAKE ME HOME" />
+          <div class="single-meta">2026 · ft. CKO &amp; Jon Roberts</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">WEATHER</div>
+          <div class="single-meta">2026</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/masterpiece.jpg" alt="masterpiece" />
+        <div class="single-info">
+          <div class="single-title">masterpiece</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="fine by me" />
+        <div class="single-info">
+          <div class="single-title">fine by me</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Imagine.webp" alt="Imagine" />
+        <div class="single-info">
+          <div class="single-title">Imagine</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Spend Time.webp" alt="Spend Time" />
+        <div class="single-info">
+          <div class="single-title">Spend Time</div>
+          <div class="single-meta">2025 · ft. Will Ngonga</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/So Beyond.webp" alt="So Beyond" />
+        <div class="single-info">
+          <div class="single-title">So Beyond</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Before the dawn.webp" alt="Before The Dawn" />
+        <div class="single-info">
+          <div class="single-title">Before The Dawn</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Good News.webp" alt="Good News" />
+        <div class="single-info">
+          <div class="single-title">Good News</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">oxygen</div>
+          <div class="single-meta">2025 · ft. gio. &amp; H3nry Thr!ll</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/faithful.jpg" alt="Faithful" />
+        <div class="single-info">
+          <div class="single-title">Faithful</div>
+          <div class="single-meta">2024 · ft. Kim Viera</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">receipt</div>
+          <div class="single-meta">2024 · ft. gio.</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">Lifter Of My Head</div>
+          <div class="single-meta">2024</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">Trend</div>
+          <div class="single-meta">2024</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
