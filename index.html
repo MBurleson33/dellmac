@@ -457,17 +457,15 @@
     .spotify-inline {
       display: none;
       grid-column: 1 / -1;
-      background: var(--surface);
-      border-left: 2px solid var(--gold);
-      margin: 0.25rem 0 0.5rem;
-      padding: 0.75rem;
+      background: transparent;
+      margin: 0 0 0.5rem 3.5rem;
     }
     .spotify-inline.active {
       display: block;
     }
     .spotify-inline iframe {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 12px;
       display: block;
     }
     .play-btn {
@@ -504,6 +502,10 @@
     }
     @media (max-width: 700px) {
       .singles-list { grid-template-columns: 1fr; }
+    }
+    .single-item {
+      display: flex;
+      flex-direction: column;
     }
     .single-row {
       display: grid;
@@ -810,7 +812,7 @@
     <div class="singles-list">
 
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Gethsemane.jpg" alt="GETHSEMANE" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="GETHSEMANE" />
         <div class="single-info">
           <div class="single-title">GETHSEMANE</div>
           <div class="single-meta">2026</div>
@@ -834,7 +836,7 @@
       </div>
 
       <div class="single-row">
-        <div class="single-thumb--placeholder"></div>
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="ALPHA OMEGA" />
         <div class="single-info">
           <div class="single-title">ALPHA OMEGA</div>
           <div class="single-meta">2026</div>
@@ -858,7 +860,7 @@
       </div>
 
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/masterpiece.jpg" alt="masterpiece" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="masterpiece" />
         <div class="single-info">
           <div class="single-title">masterpiece</div>
           <div class="single-meta">2025</div>
@@ -906,7 +908,7 @@
       </div>
 
       <div class="single-row">
-        <div class="single-thumb--placeholder"></div>
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Eyes On You" />
         <div class="single-info">
           <div class="single-title">Eyes On You</div>
           <div class="single-meta">2025</div>
@@ -1001,41 +1003,9 @@
         </div>
       </div>
 
-      <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="receipt" />
-        <div class="single-info">
-          <div class="single-title">receipt</div>
-          <div class="single-meta">2024 · ft. gio.</div>
-        </div>
-        <div class="single-links">
-          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
-        </div>
-      </div>
 
-      <div class="single-row">
-        <div class="single-thumb--placeholder"></div>
-        <div class="single-info">
-          <div class="single-title">ALPHA OMEGA</div>
-          <div class="single-meta">2024</div>
-        </div>
-        <div class="single-links">
-          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/track/5YPscbKN2dnhwWBFc0CEfL" target="_blank" rel="noopener">Spotify</a>
-        </div>
-      </div>
 
-      <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/lifter of my head.jpg" alt="Lifter Of My Head" />
-        <div class="single-info">
-          <div class="single-title">Lifter Of My Head</div>
-          <div class="single-meta">2024</div>
-        </div>
-        <div class="single-links">
-          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
-        </div>
-      </div>
+
 
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/trend.jpg" alt="Trend" />
@@ -1270,8 +1240,15 @@ document.querySelectorAll('.single-row').forEach(row => {
 
   const player = document.createElement('div');
   player.className = 'spotify-inline';
-  player.innerHTML = `<iframe height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
-  row.after(player);
+  player.innerHTML = `<iframe height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+
+  // Wrap row + player together so player stays in same column
+  const wrapper = document.createElement('div');
+  wrapper.className = 'single-item';
+  row.parentNode.insertBefore(wrapper, row);
+  wrapper.appendChild(row);
+  wrapper.appendChild(player);
+
   btn._player = player;
 });
 
