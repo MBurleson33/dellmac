@@ -456,16 +456,16 @@
 
     .spotify-inline {
       display: none;
-      grid-column: 1 / -1;
-      background: transparent;
-      margin: 0 0 0.5rem 3.5rem;
+      margin: 0 0 0.75rem 0;
+      padding: 0 0 0 0;
     }
     .spotify-inline.active {
       display: block;
     }
     .spotify-inline iframe {
       width: 100%;
-      border-radius: 12px;
+      max-width: 400px;
+      border-radius: 10px;
       display: block;
     }
     .play-btn {
@@ -1240,7 +1240,7 @@ document.querySelectorAll('.single-row').forEach(row => {
 
   const player = document.createElement('div');
   player.className = 'spotify-inline';
-  player.innerHTML = `<iframe height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  player.innerHTML = `<iframe height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
 
   // Wrap row + player together so player stays in same column
   const wrapper = document.createElement('div');
