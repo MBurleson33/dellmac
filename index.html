@@ -47,13 +47,17 @@
     }
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--gold);
+      letter-spacing: -0.01em;
       text-decoration: none;
-      text-transform: uppercase;
+      text-transform: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
+    .nav-logo .logo-dell { color: var(--offwhite); }
+    .nav-logo .logo-mac  { color: var(--gold); font-style: italic; }
+    .nav-logo.visible { opacity: 1; }
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -79,6 +83,7 @@
       display: flex;
       align-items: flex-end;
       overflow: hidden;
+      background: url('https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/hero.webp') center right / cover no-repeat;
     }
     #hero canvas {
       position: absolute;
@@ -90,10 +95,11 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        160deg,
-        rgba(10,10,11,0.55) 0%,
-        rgba(42,48,64,0.25) 40%,
-        rgba(10,10,11,0.92) 100%
+        to right,
+        rgba(10,10,11,1) 0%,
+        rgba(10,10,11,0.85) 35%,
+        rgba(10,10,11,0.4) 60%,
+        rgba(10,10,11,0.1) 100%
       );
     }
     .hero-content {
@@ -679,7 +685,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Dell Mac</a>
+  <a class="nav-logo" href="#"><span class="logo-dell">Dell </span><span class="logo-mac">Mac</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#music">Music</a></li>
@@ -694,7 +700,7 @@
   <div class="hero-gradient"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Christian Artist · Maryland</p>
-    <h1 class="hero-name">Dell<br /><em>Mac</em></h1>
+    <h1 class="hero-name">Dell <em>Mac</em></h1>
     <p class="hero-tagline">Music born from a life surrendered to faith.</p>
     <a href="#music" class="hero-cta">Listen Now</a>
   </div>
@@ -1214,6 +1220,19 @@
   initParticles();
   requestAnimationFrame(loop);
   window.addEventListener('resize', () => { resize(); initRays(); initParticles(); });
+})();
+</script>
+
+<!-- Nav logo scroll reveal -->
+<script>
+(function() {
+  const logo = document.querySelector('.nav-logo');
+  const hero = document.getElementById('hero');
+  function onScroll() {
+    const threshold = hero ? hero.offsetHeight * 0.3 : 200;
+    logo.classList.toggle('visible', window.scrollY > threshold);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 })();
 </script>
 
