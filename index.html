@@ -451,37 +451,19 @@
     }
     .video-cta:hover { opacity: 0.7; }
 
-    /* ── SPOTIFY EMBED ── */
-    .spotify-modal {
+    .spotify-inline {
       display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(6px);
+      grid-column: 1 / -1;
+      overflow: hidden;
     }
-    .spotify-modal.active { display: flex; }
-    .spotify-modal-inner {
-      position: relative;
+    .spotify-inline.active {
+      display: block;
+    }
+    .spotify-inline iframe {
       width: 100%;
-      max-width: 420px;
-      padding: 1rem;
+      border-radius: 0;
+      display: block;
     }
-    .spotify-modal-close {
-      position: absolute;
-      top: -0.5rem;
-      right: 0.5rem;
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-    }
-    .spotify-modal-close:hover { color: var(--offwhite); }
     .play-btn {
       background: none;
       border: none;
@@ -1266,42 +1248,50 @@ const SPOTIFY_TRACKS = {
   'Trend':           'track/4T0C8qrULIp9vrq3lcGeAX',
 };
 
-// Inject play buttons into each single row that has a matching track ID
+// Inject play buttons and inline players into each single row
 document.querySelectorAll('.single-row').forEach(row => {
   const title = row.querySelector('.single-title')?.textContent?.trim();
-  const trackId = SPOTIFY_TRACKS[title];
-  if (!trackId) return;
+  const uri = SPOTIFY_TRACKS[title];
+  if (!uri) return;
   const linksDiv = row.querySelector('.single-links');
   if (!linksDiv) return;
+
+  // Play button
   const btn = document.createElement('button');
   btn.className = 'play-btn';
-  btn.dataset.spotifyUri = trackId;
+  btn.dataset.spotifyUri = uri;
   btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><polygon points="5.5,4.5 10,7 5.5,9.5" fill="currentColor"/></svg> Preview`;
   linksDiv.prepend(btn);
+
+  // Inline player div (hidden by default)
+  const player = document.createElement('div');
+  player.className = 'spotify-inline';
+  player.innerHTML = `<iframe height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  row.parentNode.insertBefore(player, row.nextSibling);
+  btn.dataset.player = '';
+  btn._player = player;
 });
 
-// Modal logic
-const modal = document.getElementById('spotify-modal');
-const embed = document.getElementById('spotify-embed');
-const closeBtn = document.getElementById('spotify-close');
-
+// Click handler — toggle inline player, close others
 document.addEventListener('click', e => {
   const btn = e.target.closest('.play-btn');
-  if (btn) {
-    embed.src = `https://open.spotify.com/embed/${btn.dataset.spotifyUri}?utm_source=generator&theme=0`;
-    modal.classList.add('active');
-  }
-});
+  if (!btn) return;
+  const player = btn._player;
+  const isOpen = player.classList.contains('active');
 
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('active');
-  embed.src = '';
-});
+  // Close all open players
+  document.querySelectorAll('.spotify-inline.active').forEach(p => {
+    p.classList.remove('active');
+    p.querySelector('iframe').src = '';
+  });
+  document.querySelectorAll('.play-btn').forEach(b => {
+    b.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><polygon points="5.5,4.5 10,7 5.5,9.5" fill="currentColor"/></svg> Preview`;
+  });
 
-modal.addEventListener('click', e => {
-  if (e.target === modal) {
-    modal.classList.remove('active');
-    embed.src = '';
+  if (!isOpen) {
+    player.classList.add('active');
+    player.querySelector('iframe').src = `https://open.spotify.com/embed/${btn.dataset.spotifyUri}?utm_source=generator&theme=0`;
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><rect x="4.5" y="4" width="2" height="6" fill="currentColor"/><rect x="7.5" y="4" width="2" height="6" fill="currentColor"/></svg> Close`;
   }
 });
 </script>
