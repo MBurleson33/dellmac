@@ -457,14 +457,17 @@
     .spotify-inline {
       display: none;
       grid-column: 1 / -1;
-      overflow: hidden;
+      background: var(--surface);
+      border-left: 2px solid var(--gold);
+      margin: 0.25rem 0 0.5rem;
+      padding: 0.75rem;
     }
     .spotify-inline.active {
       display: block;
     }
     .spotify-inline iframe {
       width: 100%;
-      border-radius: 0;
+      border-radius: 8px;
       display: block;
     }
     .play-btn {
@@ -1251,50 +1254,47 @@ const SPOTIFY_TRACKS = {
   'Trend':           'track/4T0C8qrULIp9vrq3lcGeAX',
 };
 
-// Single hidden Spotify iframe
-const spotifyFrame = document.createElement('iframe');
-spotifyFrame.style.cssText = 'position:fixed;width:0;height:0;border:0;opacity:0;pointer-events:none;';
-spotifyFrame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-document.body.appendChild(spotifyFrame);
-
-const PLAY_ICON = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><polygon points="5.5,4.5 10,7 5.5,9.5" fill="currentColor"/></svg> Preview`;
-const PAUSE_ICON = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><rect x="4.5" y="4" width="2" height="6" fill="currentColor"/><rect x="7.5" y="4" width="2" height="6" fill="currentColor"/></svg> Pause`;
-
-let activeBtn = null;
-
-// Inject play buttons
+// Inject play buttons and inline players into each single row
 document.querySelectorAll('.single-row').forEach(row => {
   const title = row.querySelector('.single-title')?.textContent?.trim();
   const uri = SPOTIFY_TRACKS[title];
   if (!uri) return;
   const linksDiv = row.querySelector('.single-links');
   if (!linksDiv) return;
+
   const btn = document.createElement('button');
   btn.className = 'play-btn';
   btn.dataset.spotifyUri = uri;
-  btn.innerHTML = PLAY_ICON;
+  btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><polygon points="5.5,4.5 10,7 5.5,9.5" fill="currentColor"/></svg> Preview`;
   linksDiv.prepend(btn);
+
+  const player = document.createElement('div');
+  player.className = 'spotify-inline';
+  player.innerHTML = `<iframe height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  row.after(player);
+  btn._player = player;
 });
 
-// Click handler
+const PLAY_ICON = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><polygon points="5.5,4.5 10,7 5.5,9.5" fill="currentColor"/></svg> Preview`;
+const CLOSE_ICON = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><line x1="5" y1="5" x2="9" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="9" y1="5" x2="5" y2="9" stroke="currentColor" stroke-width="1.5"/></svg> Close`;
+
 document.addEventListener('click', e => {
   const btn = e.target.closest('.play-btn');
   if (!btn) return;
+  const player = btn._player;
+  const isOpen = player.classList.contains('active');
 
-  const isActive = btn === activeBtn;
-
-  // Reset all buttons
+  // Close all
+  document.querySelectorAll('.spotify-inline.active').forEach(p => {
+    p.classList.remove('active');
+    p.querySelector('iframe').src = '';
+  });
   document.querySelectorAll('.play-btn').forEach(b => b.innerHTML = PLAY_ICON);
 
-  if (isActive) {
-    // Pause — clear iframe src
-    spotifyFrame.src = '';
-    activeBtn = null;
-  } else {
-    // Play new track
-    spotifyFrame.src = `https://open.spotify.com/embed/${btn.dataset.spotifyUri}?utm_source=generator&theme=0&autoplay=1`;
-    btn.innerHTML = PAUSE_ICON;
-    activeBtn = btn;
+  if (!isOpen) {
+    player.classList.add('active');
+    player.querySelector('iframe').src = `https://open.spotify.com/embed/${btn.dataset.spotifyUri}?utm_source=generator&theme=0`;
+    btn.innerHTML = CLOSE_ICON;
   }
 });
 </script>
