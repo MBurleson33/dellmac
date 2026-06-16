@@ -185,6 +185,39 @@
       transition: height 0.05s linear;
     }
 
+    /* ── HERO SCROLL INDICATOR ── */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: 2.5rem;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .hero-scroll:hover { color: var(--offwhite); }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: scrollBounce 1.8s ease-in-out infinite;
+      transform-origin: top center;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.4); opacity: 0.3; }
+    }
+
     /* ── SECTION BASE ── */
     section { padding: 7rem 2.5rem; }
     .section-label {
@@ -717,7 +750,7 @@
     <p class="hero-tagline">Music born from a life surrendered to faith.</p>
     <a href="#music" class="hero-cta">Listen Now</a>
   </div>
-  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+  <button class="hero-scroll" aria-label="Scroll to next section" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Scroll<div class="hero-scroll-line"></div></button>
 </section>
 
 <!-- ABOUT -->
