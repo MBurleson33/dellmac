@@ -376,7 +376,107 @@
     }
     .listen-link:hover { color: var(--gold); border-color: var(--gold-dim); }
 
-    /* ── SINGLES LIST ── */
+    /* ── FEATURED VIDEO ── */
+    .featured-video {
+      margin-bottom: 4rem;
+    }
+    .featured-video-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .video-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--offwhite);
+    }
+    .video-cta {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 0.1rem;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .video-cta:hover { opacity: 0.7; }
+
+    /* ── SPOTIFY EMBED ── */
+    .spotify-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+    }
+    .spotify-modal.active { display: flex; }
+    .spotify-modal-inner {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      padding: 1rem;
+    }
+    .spotify-modal-close {
+      position: absolute;
+      top: -0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .spotify-modal-close:hover { color: var(--offwhite); }
+    .play-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .play-btn:hover { color: var(--gold); }
+    .play-btn svg { flex-shrink: 0; }
     .singles-label {
       font-size: 0.65rem;
       font-weight: 600;
@@ -388,8 +488,12 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .singles-list {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2.5rem;
+    }
+    @media (max-width: 700px) {
+      .singles-list { grid-template-columns: 1fr; }
     }
     .single-row {
       display: grid;
@@ -649,6 +753,18 @@
         <h2 class="section-title">Music</h2>
       </div>
     </div>
+
+    <!-- Featured Video -->
+    <div class="featured-video">
+      <p class="featured-video-label">Latest Video</p>
+      <div class="video-wrapper" id="video-wrapper">
+        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:0.85rem;">Loading latest video...</div>
+      </div>
+      <div class="video-meta">
+        <span class="video-title" id="video-title"></span>
+        <a class="video-cta" href="https://www.youtube.com/channel/UClRb8RvKMxpM7rFlsd6P8RQ" target="_blank" rel="noopener">Watch More on YouTube ↗</a>
+      </div>
+    </div>
     <div class="album-grid">
 
       <!-- Albums -->
@@ -675,17 +791,15 @@
       </div>
 
       <div class="album-card">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Back To You album cover" /></div>
+        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Back To You EP cover" /></div>
         <div class="album-year">Sep 2023</div>
         <div class="album-title">Back To You</div>
-        <div class="album-type">Album</div>
+        <div class="album-type">EP</div>
         <div class="listen-links">
           <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="listen-link" href="https://open.spotify.com/album/1oyqyXuyVEVKjZL2b42Pek" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
-
-
 
     </div>
 
@@ -701,7 +815,7 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/album/4v9wQdqBZtZazIRQHMcv71" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -710,6 +824,18 @@
         <div class="single-info">
           <div class="single-title">TAKE ME HOME</div>
           <div class="single-meta">2026 · ft. CKO &amp; Jon Roberts</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/album/3tT6kv70z3lMgxmjnnkACK" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">ALPHA OMEGA</div>
+          <div class="single-meta">2026</div>
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
@@ -742,14 +868,14 @@
       </div>
 
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="fine by me" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="FINE BY ME!" />
         <div class="single-info">
-          <div class="single-title">Fine By Me</div>
+          <div class="single-title">FINE BY ME!</div>
           <div class="single-meta">2025</div>
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/track/1KQLXKkdDRI6yLjjnGLPdD" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -761,7 +887,7 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/album/1OeKsdwUv0YzySuzeZjeM8" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -773,7 +899,19 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/album/2FRbr8pbmIE9b79sUdCtva" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">Eyes On You</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/track/5HumzUY33Lrl13NUjGGKr8" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -797,7 +935,7 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/album/00EgcNA6EQiT1rXNFCZiNb" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -809,7 +947,7 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/album/7CPjLRoPZqhK0uRBt4wKUI" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -821,7 +959,31 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/track/5l7n3eYehOySHFCHGevIMz" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">Unleavened</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/track/4Gt79lFGV76T5OrDz1Z26s" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/touched by you.jpg" alt="Touched By You" />
+        <div class="single-info">
+          <div class="single-title">Touched By You</div>
+          <div class="single-meta">2025</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/track/4IUgXaajX5B3c8CRncWum9" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -833,7 +995,7 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/track/24waCyrcgW6TrfKYLCuiwO" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -846,6 +1008,18 @@
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
           <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+
+      <div class="single-row">
+        <div class="single-thumb--placeholder"></div>
+        <div class="single-info">
+          <div class="single-title">ALPHA OMEGA</div>
+          <div class="single-meta">2024</div>
+        </div>
+        <div class="single-links">
+          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
+          <a class="single-link" href="https://open.spotify.com/track/5YPscbKN2dnhwWBFc0CEfL" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -869,19 +1043,9 @@
         </div>
         <div class="single-links">
           <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="single-link" href="https://open.spotify.com/track/4T0C8qrULIp9vrq3lcGeAX" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
-
-      <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/touched by you.jpg" alt="Touched By You" />
-        <div class="single-info">
-          <div class="single-title">Touched By You</div>
-          <div class="single-meta">2025</div>
-        </div>
-        <div class="single-links">
-          <a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
 
@@ -938,6 +1102,23 @@
   <div>© 2026 Dell Mac · All Rights Reserved</div>
   <div>Maryland · <span>Christian Artist</span></div>
 </footer>
+
+<!-- Spotify Preview Modal -->
+<div class="spotify-modal" id="spotify-modal">
+  <div class="spotify-modal-inner">
+    <button class="spotify-modal-close" id="spotify-close">✕</button>
+    <iframe id="spotify-embed"
+      style="border-radius:12px"
+      src=""
+      width="100%"
+      height="352"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+</div>
 
 <!-- HERO CANVAS: light-ray particle effect -->
 <script>
@@ -1034,6 +1215,94 @@
   requestAnimationFrame(loop);
   window.addEventListener('resize', () => { resize(); initRays(); initParticles(); });
 })();
+</script>
+
+<!-- YouTube Latest Video -->
+<script>
+(async function() {
+  const CHANNEL_ID = 'UClRb8RvKMxpM7rFlsd6P8RQ';
+  const API_KEY = 'AIzaSyDkrexB-2y00Xbx1dy5LMxRs5uHUP4PS8Q';
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=1&type=video`
+    );
+    const data = await res.json();
+    const video = data.items?.[0];
+    if (video) {
+      const id = video.id.videoId;
+      const title = video.snippet.title;
+      document.getElementById('video-wrapper').innerHTML =
+        `<iframe src="https://www.youtube.com/embed/${id}?rel=0" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
+      document.getElementById('video-title').textContent = title;
+    }
+  } catch(e) {
+    document.getElementById('video-wrapper').innerHTML =
+      `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:0.85rem;">Could not load video</div>`;
+  }
+})();
+</script>
+
+<!-- Spotify Track Map & Modal -->
+<script>
+// Map single titles to Spotify URIs (track or album)
+const SPOTIFY_TRACKS = {
+  'GETHSEMANE':      'album/4v9wQdqBZtZazIRQHMcv71',
+  'TAKE ME HOME':    'album/3tT6kv70z3lMgxmjnnkACK',
+  'ALPHA OMEGA':     'track/5YPscbKN2dnhwWBFc0CEfL',
+  'WEATHER':         'album/1m2Wphag7im8RefkQHSNAM',
+  'masterpiece':     'track/2f3n8JL6xadhCiArFjG4rV',
+  'FINE BY ME!':     'track/1KQLXKkdDRI6yLjjnGLPdD',
+  'Imagine':         'album/1OeKsdwUv0YzySuzeZjeM8',
+  'Spend Time':      'album/2FRbr8pbmIE9b79sUdCtva',
+  'Eyes On You':     'track/5HumzUY33Lrl13NUjGGKr8',
+  'So Beyond':       'track/4T0C8qrULIp9vrq3lcGeAX',
+  'Before The Dawn': 'album/00EgcNA6EQiT1rXNFCZiNb',
+  'Good News':       'album/7CPjLRoPZqhK0uRBt4wKUI',
+  'oxygen':          'track/5l7n3eYehOySHFCHGevIMz',
+  'Unleavened':      'track/4Gt79lFGV76T5OrDz1Z26s',
+  'Touched By You':  'track/4IUgXaajX5B3c8CRncWum9',
+  'Faithful':        'track/24waCyrcgW6TrfKYLCuiwO',
+  'Trend':           'track/4T0C8qrULIp9vrq3lcGeAX',
+};
+
+// Inject play buttons into each single row that has a matching track ID
+document.querySelectorAll('.single-row').forEach(row => {
+  const title = row.querySelector('.single-title')?.textContent?.trim();
+  const trackId = SPOTIFY_TRACKS[title];
+  if (!trackId) return;
+  const linksDiv = row.querySelector('.single-links');
+  if (!linksDiv) return;
+  const btn = document.createElement('button');
+  btn.className = 'play-btn';
+  btn.dataset.spotifyUri = trackId;
+  btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor"/><polygon points="5.5,4.5 10,7 5.5,9.5" fill="currentColor"/></svg> Preview`;
+  linksDiv.prepend(btn);
+});
+
+// Modal logic
+const modal = document.getElementById('spotify-modal');
+const embed = document.getElementById('spotify-embed');
+const closeBtn = document.getElementById('spotify-close');
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.play-btn');
+  if (btn) {
+    embed.src = `https://open.spotify.com/embed/${btn.dataset.spotifyUri}?utm_source=generator&theme=0`;
+    modal.classList.add('active');
+  }
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+  embed.src = '';
+});
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) {
+    modal.classList.remove('active');
+    embed.src = '';
+  }
+});
 </script>
 
 </body>
