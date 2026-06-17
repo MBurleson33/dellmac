@@ -4,12 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dell Mac — Christian Artist</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" type="image/jpeg" />
+
+  <!-- SEO -->
   <meta name="description" content="Dell Mac is a Christian artist from Maryland known for angelic vocals, smooth melodies, and faith-driven music that moves the soul." />
+  <meta name="keywords" content="Dell Mac, Christian artist, Christian music, Maryland, faith music, gospel R&B, JERICHO EP, MAC album, Christian R&B" />
+  <meta name="author" content="Dell Mac" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dellmac.com/" />
+
+  <!-- Open Graph (Facebook, iMessage, Discord previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dell Mac — Christian Artist" />
+  <meta property="og:description" content="Music born from a life surrendered to faith. Dell Mac is a Christian artist from Maryland known for angelic vocals and cinematic sound." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" />
+  <meta property="og:url" content="https://dellmac.com/" />
+  <meta property="og:site_name" content="Dell Mac" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dell Mac — Christian Artist" />
+  <meta name="twitter:description" content="Music born from a life surrendered to faith. Dell Mac is a Christian artist from Maryland known for angelic vocals and cinematic sound." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" />
+
+  <!-- Structured Data (Google Rich Results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Dell Mac",
+    "description": "Dell Mac is a Christian artist from Maryland known for angelic vocals, smooth melodies, and faith-driven music.",
+    "genre": ["Christian music", "R&B", "Gospel"],
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Maryland, USA"
+    },
+    "url": "https://dellmac.com",
+    "image": "https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg",
+    "sameAs": [
+      "https://music.apple.com/us/artist/dell-mac/1628947353",
+      "https://open.spotify.com/artist/2bOFrOLf6CMDWHYOJ5tLC9",
+      "https://www.youtube.com/channel/UClRb8RvKMxpM7rFlsd6P8RQ",
+      "https://www.instagram.com/dellmac_/",
+      "https://soundcloud.com/dellmac301"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── SKIP NAV (ADA) ── */
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 1rem; }
+
+    /* ── FOCUS STYLES (ADA) ── */
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
 
     :root {
       --black:   #0A0A0B;
@@ -155,18 +227,19 @@
     .hero-cta {
       display: inline-block;
       padding: 0.85rem 2rem;
+      background: var(--gold);
       border: 1px solid var(--gold);
-      color: var(--gold);
+      color: var(--offwhite);
       text-decoration: none;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      transition: background 0.25s, color 0.25s;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
     }
     .hero-cta:hover {
-      background: var(--gold);
-      color: var(--black);
+      background: transparent;
+      color: var(--gold);
     }
     /* ── SCROLL PROGRESS ── */
     .scroll-progress {
@@ -273,7 +346,7 @@
       margin-top: 2.5rem;
     }
     .fact {
-      border-top: 1px solid rgba(201,168,76,0.2);
+      border-top: 1px solid rgba(192,57,43,0.2);
       padding-top: 1rem;
     }
     .fact-label {
@@ -329,6 +402,26 @@
       color: var(--gold-dim);
       text-align: center;
       line-height: 1.4;
+    }
+
+    /* ── SECTION TRANSITIONS ── */
+    #about { position: relative; }
+    #about::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--black));
+      pointer-events: none;
+    }
+    #press { position: relative; }
+    #press::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--black));
+      pointer-events: none;
     }
 
     /* ── MUSIC ── */
@@ -497,6 +590,8 @@
       display: block;
     }
     .play-btn {
+      min-height: 44px;
+      min-width: 44px;
       background: none;
       border: none;
       cursor: pointer;
@@ -543,7 +638,7 @@
     }
     .single-row {
       display: grid;
-      grid-template-columns: 48px 1fr auto;
+      grid-template-columns: 52px 1fr auto;
       align-items: center;
       gap: 1rem;
       padding: 0.75rem 0;
@@ -552,15 +647,15 @@
     }
     .single-row:hover { background: rgba(255,255,255,0.02); }
     .single-thumb {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       object-fit: cover;
       display: block;
       flex-shrink: 0;
     }
     .single-thumb--placeholder {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       background: var(--surface);
       border: 1px dashed rgba(192,57,43,0.2);
       flex-shrink: 0;
@@ -568,7 +663,7 @@
     .single-info { min-width: 0; }
     .single-title {
       font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--offwhite);
       white-space: nowrap;
@@ -666,41 +761,93 @@
     }
     .social-link:hover { color: var(--gold); border-color: var(--gold-dim); }
     .booking-box {
-      margin-top: 4rem;
-      padding: 2.5rem;
-      border: 1px solid rgba(201,168,76,0.2);
+      margin-top: 5rem;
+      padding: 3.5rem;
+      background: var(--surface);
+      border-top: 2px solid var(--gold);
+      text-align: center;
     }
     .booking-box h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-size: 2rem;
       margin-bottom: 0.75rem;
       color: var(--offwhite);
     }
-    .booking-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .booking-box p { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
     .booking-email {
-      color: var(--gold);
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      background: var(--gold);
+      color: var(--offwhite);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       text-decoration: none;
-      border-bottom: 1px solid var(--gold-dim);
-      padding-bottom: 0.1rem;
-      transition: opacity 0.2s;
+      transition: background 0.25s, color 0.25s;
     }
-    .booking-email:hover { opacity: 0.7; }
+    .booking-email:hover { background: transparent; color: var(--gold); outline: 1px solid var(--gold); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--black);
-      border-top: 1px solid rgba(201,168,76,0.1);
-      padding: 2rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--deep);
+      border-top: 1px solid rgba(192,57,43,0.15);
+      padding: 4rem 2.5rem 2.5rem;
       font-size: 0.7rem;
       color: var(--muted);
       letter-spacing: 0.1em;
     }
-    footer span { color: var(--gold-dim); }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .footer-brand { grid-column: 1; }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .footer-tagline {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 260px;
+    }
+    .footer-nav, .footer-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-nav a, .footer-socials a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover, .footer-socials a:hover { color: var(--gold); }
+    .footer-copy {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-copy { grid-column: 1 / -1; }
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -716,6 +863,149 @@
       footer { flex-direction: column; gap: 0.75rem; text-align: center; }
     }
 
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--offwhite);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      background: rgba(10,10,11,0.97);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 600;
+      color: var(--offwhite);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-drawer a:hover { color: var(--gold); }
+    .nav-drawer a.active { color: var(--gold); font-style: italic; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ── 3-COLUMN PRESS ── */
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 900px) {
+      .press-grid { grid-template-columns: 1fr; }
+    }
+    .press-card {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+    .press-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.25;
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+    }
+    .press-card p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--offwhite);
+      margin-bottom: 1.5rem;
+      padding-top: 2rem;
+    }
+    .press-card .press-source {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-top: 1px solid rgba(192,57,43,0.2);
+      padding-top: 1rem;
+      display: block;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── ACTIVE NAV ── */
+    .nav-links a.active {
+      opacity: 1;
+      color: var(--gold);
+    }
+    .nav-links a.active::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--gold-dim);
+      margin-top: 3px;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition-duration: 0.01ms !important; }
     }
@@ -723,13 +1013,16 @@
 </head>
 <body>
 
+<!-- Skip to main content (ADA) -->
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
 <!-- Scroll Progress -->
 <div class="scroll-progress" aria-hidden="true">
   <div class="scroll-progress-bar" id="scroll-bar"></div>
 </div>
 
 <!-- NAV -->
-<nav>
+<nav role="navigation" aria-label="Main navigation">
   <a class="nav-logo" href="#"><span class="logo-dell">Dell </span><span class="logo-mac">Mac</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -737,12 +1030,26 @@
     <li><a href="#press">They Say</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="#about" class="drawer-link">About</a>
+  <a href="#music" class="drawer-link">Music</a>
+  <a href="#press" class="drawer-link">They Say</a>
+  <a href="#contact" class="drawer-link">Contact</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
+
 <!-- HERO -->
-<section id="hero">
+<section id="hero" aria-label="Hero">
   <img class="hero-bg" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/hero.webp" alt="" aria-hidden="true" />
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <canvas id="hero-canvas" aria-hidden="true" focusable="false"></canvas>
   <div class="hero-gradient"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Christian Artist · Maryland</p>
@@ -754,11 +1061,11 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" aria-labelledby="about-heading">
   <div class="about-inner">
-  <div class="about-text">
+  <div class="about-text reveal-left">
     <p class="section-label">The Artist</p>
-    <h2 class="section-title">From the Streets<br />to the Sacred</h2>
+    <h2 class="section-title" id="about-heading">From the Streets<br />to the Sacred</h2>
     <div class="divider"></div>
     <p>
       <strong>Dell Mac</strong> is a Christian artist from Maryland, born August 28, 1997. His music is defined by angelic vocals and smooth melodies — guitar instrumentals woven through clean 808s — creating a sound that is both intimate and cinematic.
@@ -788,7 +1095,7 @@
       </div>
     </div>
   </div>
-  <div class="about-visual">
+  <div class="about-visual reveal-right">
     <div class="about-quote-block">
       "Dell Mac found a renewed sense of purpose in creating music that uplifts and inspires through messages of faith in Christ."
       <cite>— Gospel Music Buzz</cite>
@@ -799,143 +1106,143 @@
 </section>
 
 <!-- MUSIC -->
-<section id="music">
+<section id="music" aria-labelledby="music-heading">
   <div class="music-inner">
-    <div class="music-header">
+    <div class="music-header reveal">
       <div>
         <p class="section-label">Discography</p>
-        <h2 class="section-title">Music</h2>
+        <h2 class="section-title" id="music-heading">Music</h2>
       </div>
     </div>
 
     <div class="album-grid">
 
       <!-- Albums -->
-      <div class="album-card">
+      <div class="album-card reveal reveal-delay-1">
         <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="MAC album cover" /></div>
         <div class="album-year">Mar 2026</div>
-        <div class="album-title">MAC</div>
+        <h3 class="album-title">MAC</h3>
         <div class="album-type">Album</div>
         <div class="listen-links">
-          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a>
+          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
         </div>
       </div>
 
-      <div class="album-card">
+      <div class="album-card reveal reveal-delay-2">
         <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="JERICHO EP cover" /></div>
         <div class="album-year">Apr 2025</div>
-        <div class="album-title">JERICHO EP</div>
+        <h3 class="album-title">JERICHO EP</h3>
         <div class="album-type">EP (with gio.)</div>
         <div class="listen-links">
-          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a>
+          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a>
+          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
         </div>
       </div>
 
-      <div class="album-card">
+      <div class="album-card reveal reveal-delay-3">
         <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Back To You EP cover" /></div>
         <div class="album-year">Sep 2023</div>
-        <div class="album-title">Back To You</div>
+        <h3 class="album-title">Back To You</h3>
         <div class="album-type">EP</div>
         <div class="listen-links">
-          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/album/1oyqyXuyVEVKjZL2b42Pek" target="_blank" rel="noopener">Spotify</a>
+          <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a>
+          <a class="listen-link" href="https://open.spotify.com/album/1oyqyXuyVEVKjZL2b42Pek" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
         </div>
       </div>
 
     </div>
 
     <!-- Singles -->
-    <p class="singles-label">Singles</p>
+    <p class="singles-label reveal">Singles</p>
     <div class="singles-list">
-      <div class="singles-col">
+      <div class="singles-col reveal reveal-delay-1">
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="GETHSEMANE" />
         <div class="single-info"><div class="single-title">GETHSEMANE</div><div class="single-meta">2026</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/4v9wQdqBZtZazIRQHMcv71" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/4v9wQdqBZtZazIRQHMcv71" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="ALPHA OMEGA" />
         <div class="single-info"><div class="single-title">ALPHA OMEGA</div><div class="single-meta">2026</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5YPscbKN2dnhwWBFc0CEfL" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5YPscbKN2dnhwWBFc0CEfL" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="masterpiece" />
         <div class="single-info"><div class="single-title">masterpiece</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/2f3n8JL6xadhCiArFjG4rV" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/2f3n8JL6xadhCiArFjG4rV" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Imagine.webp" alt="Imagine" />
         <div class="single-info"><div class="single-title">Imagine</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/1OeKsdwUv0YzySuzeZjeM8" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/1OeKsdwUv0YzySuzeZjeM8" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Eyes On You" />
         <div class="single-info"><div class="single-title">Eyes On You</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5HumzUY33Lrl13NUjGGKr8" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5HumzUY33Lrl13NUjGGKr8" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Before the dawn.webp" alt="Before The Dawn" />
         <div class="single-info"><div class="single-title">Before The Dawn</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/00EgcNA6EQiT1rXNFCZiNb" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/00EgcNA6EQiT1rXNFCZiNb" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/oxygen.jpg" alt="oxygen" />
         <div class="single-info"><div class="single-title">oxygen</div><div class="single-meta">2025 · ft. gio. &amp; H3nry Thr!ll</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5l7n3eYehOySHFCHGevIMz" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5l7n3eYehOySHFCHGevIMz" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/touched by you.jpg" alt="Touched By You" />
         <div class="single-info"><div class="single-title">Touched By You</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4IUgXaajX5B3c8CRncWum9" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4IUgXaajX5B3c8CRncWum9" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/trend.jpg" alt="Trend" />
         <div class="single-info"><div class="single-title">Trend</div><div class="single-meta">2024</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4T0C8qrULIp9vrq3lcGeAX" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4T0C8qrULIp9vrq3lcGeAX" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       </div>
-      <div class="singles-col">
+      <div class="singles-col reveal reveal-delay-2">
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Take Me Home.webp" alt="TAKE ME HOME" />
         <div class="single-info"><div class="single-title">TAKE ME HOME</div><div class="single-meta">2026 · ft. CKO &amp; Jon Roberts</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/3tT6kv70z3lMgxmjnnkACK" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/3tT6kv70z3lMgxmjnnkACK" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/weather.jpg" alt="WEATHER" />
         <div class="single-info"><div class="single-title">WEATHER</div><div class="single-meta">2026</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/1m2Wphag7im8RefkQHSNAM" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/1m2Wphag7im8RefkQHSNAM" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="FINE BY ME!" />
         <div class="single-info"><div class="single-title">FINE BY ME!</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/1KQLXKkdDRI6yLjjnGLPdD" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/1KQLXKkdDRI6yLjjnGLPdD" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Spend Time.webp" alt="Spend Time" />
         <div class="single-info"><div class="single-title">Spend Time</div><div class="single-meta">2025 · ft. Will Ngonga</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/2FRbr8pbmIE9b79sUdCtva" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/2FRbr8pbmIE9b79sUdCtva" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/So Beyond.webp" alt="So Beyond" />
         <div class="single-info"><div class="single-title">So Beyond</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Good News.webp" alt="Good News" />
         <div class="single-info"><div class="single-title">Good News</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/7CPjLRoPZqhK0uRBt4wKUI" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/7CPjLRoPZqhK0uRBt4wKUI" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <div class="single-thumb--placeholder"></div>
         <div class="single-info"><div class="single-title">Unleavened</div><div class="single-meta">2025</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4Gt79lFGV76T5OrDz1Z26s" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4Gt79lFGV76T5OrDz1Z26s" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
         <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/faithful.jpg" alt="Faithful" />
         <div class="single-info"><div class="single-title">Faithful</div><div class="single-meta">2024 · ft. Kim Viera</div></div>
-        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/24waCyrcgW6TrfKYLCuiwO" target="_blank" rel="noopener">Spotify</a></div>
+        <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/24waCyrcgW6TrfKYLCuiwO" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       </div>
     </div>
@@ -944,42 +1251,42 @@
 </section>
 
 <!-- PRESS -->
-<section id="press">
+<section id="press" aria-labelledby="press-heading">
   <div class="press-inner">
-    <p class="section-label">They Say</p>
+    <p class="section-label" id="press-heading">They Say</p>
     <div class="divider"></div>
 
-    <div class="press-quote">
-      <p>"I discovered Dell Mac because of JERICHO, his collab EP — and his music is evidence of what it means to make something sincerely faith-driven and musically excellent."</p>
-      <span class="press-source">— The Gospel Coalition · 15 Christian Artists to Watch, 2025</span>
-    </div>
-
-    <div class="press-quote">
-      <p>"Dell Mac's music is characterized by angelic vocals and smooth melodies, often incorporating guitar instrumentals mixed with clean 808s to create a distinctive sound."</p>
-      <span class="press-source">— The Vibe Online</span>
-    </div>
-
-    <div class="press-quote">
-      <p>"Dell Mac and Kim Viera have made a remarkable shift in their musical careers — transitioning from secular music to using their talents to glorify God. Their song 'Faithful' resonates with their personal experiences of embracing divine callings."</p>
-      <span class="press-source">— Gospel Music Buzz</span>
+    <div class="press-grid">
+      <div class="press-card reveal reveal-delay-1">
+        <p>"I discovered Dell Mac because of JERICHO, his collab EP — and his music is evidence of what it means to make something sincerely faith-driven and musically excellent."</p>
+        <span class="press-source">The Gospel Coalition · 15 Christian Artists to Watch, 2025</span>
+      </div>
+      <div class="press-card reveal reveal-delay-2">
+        <p>"Dell Mac's music is characterized by angelic vocals and smooth melodies, often incorporating guitar instrumentals mixed with clean 808s to create a distinctive sound."</p>
+        <span class="press-source">The Vibe Online</span>
+      </div>
+      <div class="press-card reveal reveal-delay-3">
+        <p>"Dell Mac and Kim Viera have made a remarkable shift — transitioning from secular music to using their talents to glorify God. 'Faithful' resonates with their personal experiences of embracing divine callings."</p>
+        <span class="press-source">Gospel Music Buzz</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" aria-labelledby="contact-heading">
   <div class="contact-inner">
-    <p class="section-label">Connect</p>
-    <h2 class="section-title">Follow the Journey</h2>
-    <p class="contact-sub">Stay connected with Dell Mac across platforms for new music, updates, and behind-the-scenes moments.</p>
-    <div class="social-row">
-      <a class="social-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener">Apple Music</a>
-      <a class="social-link" href="https://open.spotify.com/artist/2bOFrOLf6CMDWHYOJ5tLC9" target="_blank" rel="noopener">Spotify</a>
-      <a class="social-link" href="https://www.youtube.com/channel/UClRb8RvKMxpM7rFlsd6P8RQ" target="_blank" rel="noopener">YouTube</a>
-      <a class="social-link" href="https://soundcloud.com/dellmac301" target="_blank" rel="noopener">SoundCloud</a>
-      <a class="social-link" href="https://www.instagram.com/dellmac_/" target="_blank" rel="noopener">Instagram</a>
+    <p class="section-label reveal">Connect</p>
+    <h2 class="section-title reveal reveal-delay-1" id="contact-heading">Follow the Journey</h2>
+    <p class="contact-sub reveal reveal-delay-2">Stay connected with Dell Mac across platforms for new music, updates, and behind-the-scenes moments.</p>
+    <div class="social-row reveal reveal-delay-3">
+      <a class="social-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a>
+      <a class="social-link" href="https://open.spotify.com/artist/2bOFrOLf6CMDWHYOJ5tLC9" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
+      <a class="social-link" href="https://www.youtube.com/channel/UClRb8RvKMxpM7rFlsd6P8RQ" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a class="social-link" href="https://soundcloud.com/dellmac301" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+      <a class="social-link" href="https://www.instagram.com/dellmac_/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
-    <div class="booking-box">
+    <div class="booking-box reveal reveal-delay-4">
       <h3>Booking &amp; Inquiries</h3>
       <p>For bookings, ministry partnerships, collaborations, or press inquiries, reach out directly.</p>
       <a class="booking-email" href="mailto:booking@dellmac.com">booking@dellmac.com</a>
@@ -987,10 +1294,29 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
-  <div>© 2026 Dell Mac · All Rights Reserved</div>
-  <div>Maryland · <span>Christian Artist</span></div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo"><span style="color:var(--offwhite)">Dell </span><span style="color:var(--gold);font-style:italic">Mac</span></span>
+      <p class="footer-tagline">Music born from a life surrendered to faith.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#about">About</a>
+      <a href="#music">Music</a>
+      <a href="#press">They Say</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-socials">
+      <a href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a>
+      <a href="https://open.spotify.com/artist/2bOFrOLf6CMDWHYOJ5tLC9" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
+      <a href="https://www.youtube.com/channel/UClRb8RvKMxpM7rFlsd6P8RQ" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://www.instagram.com/dellmac_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <div class="footer-copy">© 2026 Dell Mac · All Rights Reserved · Maryland</div>
+  </div>
 </footer>
 
 <!-- Spotify Preview Modal -->
@@ -1105,24 +1431,79 @@
 })();
 </script>
 
-<!-- Nav logo scroll reveal + scroll progress -->
+<!-- Nav logo scroll reveal + scroll progress + reveal animations + active nav -->
 <script>
 (function() {
   const logo = document.querySelector('.nav-logo');
   const hero = document.getElementById('hero');
   const bar = document.getElementById('scroll-bar');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
 
+  // Scroll progress + nav logo + active nav
   function onScroll() {
     const threshold = hero ? hero.offsetHeight * 0.3 : 200;
     logo.classList.toggle('visible', window.scrollY > threshold);
 
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.height = pct + '%';
+    bar.style.height = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+
+    // Active nav
+    let current = '';
+    sections.forEach(section => {
+      if (scrollTop >= section.offsetTop - 120) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('nav-drawer');
+  const drawerLinks = document.querySelectorAll('.drawer-link');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = drawer.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Active state on drawer links too
+  function updateActiveDrawer() {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.id;
+    });
+    drawerLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveDrawer, { passive: true });
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
 })();
 </script>
 
@@ -1165,7 +1546,7 @@ document.querySelectorAll('.single-row').forEach(row => {
 
   const player = document.createElement('div');
   player.className = 'spotify-inline';
-  player.innerHTML = `<iframe height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  player.innerHTML = `<iframe height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify music preview"></iframe>`;
   row.after(player);
   btn._player = player;
 });
