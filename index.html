@@ -872,8 +872,9 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0.25rem;
-      z-index: 200;
+      padding: 0.5rem;
+      z-index: 300;
+      position: relative;
     }
     .nav-hamburger span {
       display: block;
@@ -886,27 +887,19 @@
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    .nav-drawer {
+    .mob-menu {
       display: none;
-      visibility: hidden;
       position: fixed;
-      inset: 0;
-      z-index: 150;
-      background: rgba(10,10,11,0.97);
-      backdrop-filter: blur(12px);
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 250;
+      background: #0A0A0B;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2.5rem;
-      pointer-events: none;
     }
-    .nav-drawer.open {
-      display: flex;
-      visibility: visible;
-      pointer-events: all;
-    }
-    .nav-drawer a {
+    .mob-menu.is-open { display: flex; }
+    .mob-menu__link {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 8vw, 3rem);
       font-weight: 600;
@@ -915,9 +908,8 @@
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
-    .nav-drawer a:hover { color: var(--gold); }
-    .nav-drawer a.active { color: var(--gold); font-style: italic; }
-
+    .mob-menu__link:hover,
+    .mob-menu__link.active { color: var(--gold); }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
@@ -1036,17 +1028,16 @@
     <li><a href="#press">They Say</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+  <button class="nav-hamburger" id="mob-btn" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
-  <a href="#about" class="drawer-link">About</a>
-  <a href="#music" class="drawer-link">Music</a>
-  <a href="#press" class="drawer-link">They Say</a>
-  <a href="#contact" class="drawer-link">Contact</a>
+<div class="mob-menu" id="mob-menu">
+  <a href="#about" class="mob-menu__link">About</a>
+  <a href="#music" class="mob-menu__link">Music</a>
+  <a href="#press" class="mob-menu__link">They Say</a>
+  <a href="#contact" class="mob-menu__link">Contact</a>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -1467,55 +1458,7 @@
 
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Hamburger menu
-  const hamburger = document.getElementById('hamburger');
-  const drawer = document.getElementById('nav-drawer');
-  const drawerLinks = document.querySelectorAll('.drawer-link');
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = drawer.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    drawer.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  drawerLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      drawer.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      hamburger.setAttribute('aria-label', 'Open menu');
-      drawer.setAttribute('aria-hidden', true);
-      document.body.style.overflow = '';
-    });
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) {
-      drawer.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      hamburger.setAttribute('aria-label', 'Open menu');
-      drawer.setAttribute('aria-hidden', true);
-      document.body.style.overflow = '';
-      hamburger.focus();
-    }
-  });
-
-  // Active state on drawer links too
-  function updateActiveDrawer() {
-    let current = '';
-    sections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 120) current = section.id;
-    });
-    drawerLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-    });
-  }
-  window.addEventListener('scroll', updateActiveDrawer, { passive: true });
   const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
