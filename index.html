@@ -11,7 +11,10 @@
   <meta name="keywords" content="Dell Mac, Christian artist, Christian music, Maryland, faith music, gospel R&B, JERICHO EP, MAC album, Christian R&B" />
   <meta name="author" content="Dell Mac" />
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0A0A0B" />
   <link rel="canonical" href="https://dellmac.com/" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <!-- Open Graph (Facebook, iMessage, Discord previews) -->
   <meta property="og:type" content="website" />
@@ -50,6 +53,7 @@
     ]
   }
   </script>
+  <link rel="preload" href="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/hero.webp" as="image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -94,7 +98,7 @@
       --slate:   #2A3040;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
 
     body {
       background: var(--black);
@@ -522,58 +526,6 @@
     }
     .listen-link:hover { color: var(--gold); border-color: var(--gold-dim); }
 
-    /* ── FEATURED VIDEO ── */
-    .featured-video {
-      margin-bottom: 4rem;
-    }
-    .featured-video-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--surface);
-      overflow: hidden;
-    }
-    .video-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .video-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    .video-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--offwhite);
-    }
-    .video-cta {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gold-dim);
-      padding-bottom: 0.1rem;
-      transition: opacity 0.2s;
-      white-space: nowrap;
-    }
-    .video-cta:hover { opacity: 0.7; }
 
     .spotify-inline {
       display: none;
@@ -1045,7 +997,7 @@
 
 <!-- HERO -->
 <section id="hero" aria-label="Hero">
-  <img class="hero-bg" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/hero.webp" alt="" aria-hidden="true" />
+  <img class="hero-bg" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/hero.webp" alt="" aria-hidden="true" loading="eager" />
   <canvas id="hero-canvas" aria-hidden="true" focusable="false"></canvas>
   <div class="hero-gradient"></div>
   <div class="hero-content">
@@ -1116,18 +1068,18 @@
 
       <!-- Albums -->
       <div class="album-card reveal reveal-delay-1">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="MAC album cover" /></div>
+        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="MAC album cover" loading="lazy" /></div>
         <div class="album-year">Mar 2026</div>
         <h3 class="album-title">MAC</h3>
         <div class="album-type">Album</div>
         <div class="listen-links">
           <a class="listen-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a>
-          <a class="listen-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
+          <a class="listen-link" href="https://open.spotify.com/album/2bOFrOLf6CMDWHYOJ5tLC9" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a>
         </div>
       </div>
 
       <div class="album-card reveal reveal-delay-2">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="JERICHO EP cover" /></div>
+        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="JERICHO EP cover" loading="lazy" /></div>
         <div class="album-year">Apr 2025</div>
         <h3 class="album-title">JERICHO EP</h3>
         <div class="album-type">EP (with gio.)</div>
@@ -1138,7 +1090,7 @@
       </div>
 
       <div class="album-card reveal reveal-delay-3">
-        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Back To You EP cover" /></div>
+        <div class="album-art"><img src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Back To You EP cover" loading="lazy" /></div>
         <div class="album-year">Sep 2023</div>
         <h3 class="album-title">Back To You</h3>
         <div class="album-type">EP</div>
@@ -1155,79 +1107,79 @@
     <div class="singles-list">
       <div class="singles-col reveal reveal-delay-1">
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="GETHSEMANE" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="GETHSEMANE" loading="lazy" />
         <div class="single-info"><div class="single-title">GETHSEMANE</div><div class="single-meta">2026</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/4v9wQdqBZtZazIRQHMcv71" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="ALPHA OMEGA" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/mac.jpg" alt="ALPHA OMEGA" loading="lazy" />
         <div class="single-info"><div class="single-title">ALPHA OMEGA</div><div class="single-meta">2026</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5YPscbKN2dnhwWBFc0CEfL" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="masterpiece" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/jericho.jpg" alt="masterpiece" loading="lazy" />
         <div class="single-info"><div class="single-title">masterpiece</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/2f3n8JL6xadhCiArFjG4rV" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Imagine.webp" alt="Imagine" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Imagine.webp" alt="Imagine" loading="lazy" />
         <div class="single-info"><div class="single-title">Imagine</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/1OeKsdwUv0YzySuzeZjeM8" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Eyes On You" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/back to you.jpg" alt="Eyes On You" loading="lazy" />
         <div class="single-info"><div class="single-title">Eyes On You</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5HumzUY33Lrl13NUjGGKr8" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Before the dawn.webp" alt="Before The Dawn" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Before the dawn.webp" alt="Before The Dawn" loading="lazy" />
         <div class="single-info"><div class="single-title">Before The Dawn</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/00EgcNA6EQiT1rXNFCZiNb" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/oxygen.jpg" alt="oxygen" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/oxygen.jpg" alt="oxygen" loading="lazy" />
         <div class="single-info"><div class="single-title">oxygen</div><div class="single-meta">2025 · ft. gio. &amp; H3nry Thr!ll</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/5l7n3eYehOySHFCHGevIMz" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/touched by you.jpg" alt="Touched By You" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/touched by you.jpg" alt="Touched By You" loading="lazy" />
         <div class="single-info"><div class="single-title">Touched By You</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4IUgXaajX5B3c8CRncWum9" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/trend.jpg" alt="Trend" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/trend.jpg" alt="Trend" loading="lazy" />
         <div class="single-info"><div class="single-title">Trend</div><div class="single-meta">2024</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4T0C8qrULIp9vrq3lcGeAX" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       </div>
       <div class="singles-col reveal reveal-delay-2">
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Take Me Home.webp" alt="TAKE ME HOME" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Take Me Home.webp" alt="TAKE ME HOME" loading="lazy" />
         <div class="single-info"><div class="single-title">TAKE ME HOME</div><div class="single-meta">2026 · ft. CKO &amp; Jon Roberts</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/3tT6kv70z3lMgxmjnnkACK" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/weather.jpg" alt="WEATHER" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/weather.jpg" alt="WEATHER" loading="lazy" />
         <div class="single-info"><div class="single-title">WEATHER</div><div class="single-meta">2026</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/1m2Wphag7im8RefkQHSNAM" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="FINE BY ME!" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/fine by me.jpg" alt="FINE BY ME!" loading="lazy" />
         <div class="single-info"><div class="single-title">FINE BY ME!</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/1KQLXKkdDRI6yLjjnGLPdD" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Spend Time.webp" alt="Spend Time" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Spend Time.webp" alt="Spend Time" loading="lazy" />
         <div class="single-info"><div class="single-title">Spend Time</div><div class="single-meta">2025 · ft. Will Ngonga</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/2FRbr8pbmIE9b79sUdCtva" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/So Beyond.webp" alt="So Beyond" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/So Beyond.webp" alt="So Beyond" loading="lazy" />
         <div class="single-info"><div class="single-title">So Beyond</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/search/Dell%20Mac" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Good News.webp" alt="Good News" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/Good News.webp" alt="Good News" loading="lazy" />
         <div class="single-info"><div class="single-title">Good News</div><div class="single-meta">2025</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/album/7CPjLRoPZqhK0uRBt4wKUI" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
@@ -1237,7 +1189,7 @@
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/4Gt79lFGV76T5OrDz1Z26s" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
       <div class="single-row">
-        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/faithful.jpg" alt="Faithful" />
+        <img class="single-thumb" src="https://raw.githubusercontent.com/MBurleson33/dellmac/main/images/faithful.jpg" alt="Faithful" loading="lazy" />
         <div class="single-info"><div class="single-title">Faithful</div><div class="single-meta">2024 · ft. Kim Viera</div></div>
         <div class="single-links"><a class="single-link" href="https://music.apple.com/us/artist/dell-mac/1628947353" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">Apple Music</a><a class="single-link" href="https://open.spotify.com/track/24waCyrcgW6TrfKYLCuiwO" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Spotify</a></div>
       </div>
@@ -1316,21 +1268,6 @@
   </div>
 </footer>
 
-<!-- Spotify Preview Modal -->
-<div class="spotify-modal" id="spotify-modal">
-  <div class="spotify-modal-inner">
-    <button class="spotify-modal-close" id="spotify-close">✕</button>
-    <iframe id="spotify-embed"
-      style="border-radius:12px"
-      src=""
-      width="100%"
-      height="352"
-      frameborder="0"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy">
-    </iframe>
-  </div>
 </div>
 
 <!-- HERO CANVAS: light-ray particle effect -->
