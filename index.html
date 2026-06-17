@@ -889,6 +889,7 @@
 
     .nav-drawer {
       display: none;
+      visibility: hidden;
       position: fixed;
       inset: 0;
       z-index: 150;
@@ -898,8 +899,13 @@
       align-items: center;
       justify-content: center;
       gap: 2.5rem;
+      pointer-events: none;
     }
-    .nav-drawer.open { display: flex; }
+    .nav-drawer.open {
+      display: flex;
+      visibility: visible;
+      pointer-events: all;
+    }
     .nav-drawer a {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 8vw, 3rem);
@@ -1036,7 +1042,7 @@
 </nav>
 
 <!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
   <a href="#about" class="drawer-link">About</a>
   <a href="#music" class="drawer-link">Music</a>
   <a href="#press" class="drawer-link">They Say</a>
@@ -1471,6 +1477,7 @@
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
     hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    drawer.setAttribute('aria-hidden', !isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
@@ -1478,8 +1485,24 @@
     link.addEventListener('click', () => {
       drawer.classList.remove('open');
       hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      hamburger.setAttribute('aria-label', 'Open menu');
+      drawer.setAttribute('aria-hidden', true);
       document.body.style.overflow = '';
     });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      hamburger.setAttribute('aria-label', 'Open menu');
+      drawer.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
   });
 
   // Active state on drawer links too
